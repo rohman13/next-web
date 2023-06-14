@@ -199,9 +199,9 @@ OpenAI 根据 token 数收费，1000 个 token 通常可代表 750 个英文单�
 |gpt-4|$0.03 / 1 千 tokens|$0.06 / 1 千 tokens|8192|
 |gpt-4-32K|$0.06 / 1 千 tokens|$0.12 / 1 千 tokens|32768|
 
-## gpt-3.5-turbo 和 gpt3.5-turbo-0301(或者 gpt3.5-turbo-mmdd)模型有什么区别?
+## gpt-3.5-turbo-16k 和 gpt3.5-turbo-0301(或者 gpt3.5-turbo-mmdd)模型有什么区别?
 
 官方文档说明：https://platform.openai.com/docs/models/gpt-3-5
 
-- gpt-3.5-turbo 是最新的模型，会不断得到更新。
-- gpt-3.5-turbo-0301 是 3 月 1 日定格的模型快照，不会变化，预期 3 个月后被新快照替代。
+- gpt-3.5-turbo-16k 是最新的模型，会不断得到更新。
+- gpt-3.5-turbo-16k-0301 是 3 月 1 日定格的模型快照，不会变化，预期 3 个月后被新快照替代。
