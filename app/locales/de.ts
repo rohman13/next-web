@@ -1,11 +1,11 @@
 import { SubmitKey } from "../store/config";
-import type { PartialLocaleType } from "./index";
+import type { LocaleType } from "./index";
 
-const de: PartialLocaleType = {
+const de: LocaleType = {
   WIP: "In Bearbeitung...",
   Error: {
     Unauthorized:
-      "Unbefugter Zugriff, bitte geben Sie den Zugangscode auf der [Einstellungsseite](/#/auth) ein.",
+      "Unbefugter Zugriff, bitte geben Sie den Zugangscode auf der Einstellungsseite ein.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} Nachrichten`,
@@ -61,7 +61,14 @@ const de: PartialLocaleType = {
   Settings: {
     Title: "Einstellungen",
     SubTitle: "Alle Einstellungen",
-
+    Actions: {
+      ClearAll: "Alle Daten löschen",
+      ResetAll: "Alle Einstellungen zurücksetzen",
+      Close: "Schließen",
+      ConfirmResetAll:
+        "Möchten Sie wirklich alle Konfigurationen zurücksetzen?",
+      ConfirmClearAll: "Möchten Sie wirklich alle Chats zurücksetzen?",
+    },
     Lang: {
       Name: "Language", // ATTENTION: if you wanna add a new translation, please do not translate this value, leave it as `Language`
       All: "Alle Sprachen",
@@ -70,11 +77,6 @@ const de: PartialLocaleType = {
     FontSize: {
       Title: "Schriftgröße",
       SubTitle: "Schriftgröße des Chat-Inhalts anpassen",
-    },
-    InjectSystemPrompts: {
-      Title: "System-Prompts einfügen",
-      SubTitle:
-        "Erzwingt das Hinzufügen eines simulierten systemweiten Prompts von ChatGPT am Anfang der Nachrichtenliste bei jeder Anfrage",
     },
     Update: {
       Version: (x: string) => `Version: ${x}`,
@@ -92,10 +94,8 @@ const de: PartialLocaleType = {
       SubTitle: "Preview markdown in bubble",
     },
     Mask: {
-      Splash: {
-        Title: "Mask Splash Screen",
-        SubTitle: "Show a mask splash screen before starting new chat",
-      },
+      Title: "Mask Splash Screen",
+      SubTitle: "Show a mask splash screen before starting new chat",
     },
     Prompt: {
       Disable: {
@@ -124,7 +124,12 @@ const de: PartialLocaleType = {
       SubTitle:
         "Komprimierung, wenn die Länge der unkomprimierten Nachrichten den Wert überschreitet",
     },
-
+    Token: {
+      Title: "API-Schlüssel",
+      SubTitle:
+        "Verwenden Sie Ihren Schlüssel, um das Zugangscode-Limit zu ignorieren",
+      Placeholder: "OpenAI API-Schlüssel",
+    },
     Usage: {
       Title: "Kontostand",
       SubTitle(used: any, total: any) {
@@ -133,6 +138,11 @@ const de: PartialLocaleType = {
       IsChecking: "Wird überprüft...",
       Check: "Erneut prüfen",
       NoAccess: "API-Schlüssel eingeben, um den Kontostand zu überprüfen",
+    },
+    AccessCode: {
+      Title: "Zugangscode",
+      SubTitle: "Zugangskontrolle aktiviert",
+      Placeholder: "Zugangscode erforderlich",
     },
     Model: "Modell",
     Temperature: {
@@ -147,11 +157,6 @@ const de: PartialLocaleType = {
       Title: "Presence Penalty", //Anwesenheitsstrafe
       SubTitle:
         "Ein größerer Wert erhöht die Wahrscheinlichkeit, dass über neue Themen gesprochen wird",
-    },
-    FrequencyPenalty: {
-      Title: "Frequency Penalty", // HäufigkeitStrafe
-      SubTitle:
-        "Ein größerer Wert, der die Wahrscheinlichkeit verringert, dass dieselbe Zeile wiederholt wird",
     },
   },
   Store: {
@@ -181,9 +186,6 @@ const de: PartialLocaleType = {
   },
   Plugin: {
     Name: "Plugin",
-  },
-  FineTuned: {
-    Sysmessage: "Du bist ein Assistent, der",
   },
   Mask: {
     Name: "Mask",
@@ -228,12 +230,6 @@ const de: PartialLocaleType = {
     Close: "Close",
     Create: "Create",
     Edit: "Edit",
-  },
-  Exporter: {
-    Model: "Modell",
-    Messages: "Nachrichten",
-    Topic: "Thema",
-    Time: "Zeit",
   },
 };
 

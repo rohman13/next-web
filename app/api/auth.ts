@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { getServerSideConfig } from "../config/server";
 import md5 from "spark-md5";
 import { ACCESS_CODE_PREFIX } from "../constant";
+import { OPENAI_URL } from "./common";
 
 function getIP(req: NextRequest) {
   let ip = req.ip ?? req.headers.get("x-real-ip");
@@ -28,7 +29,7 @@ export function auth(req: NextRequest) {
   const authToken = req.headers.get("Authorization") ?? "";
 
   // check if it is openai api key or user token
-  const { accessCode, apiKey } = parseApiKey(authToken);
+  const { accessCode, apiKey: token } = parseApiKey(authToken);
 
   const hashedCode = md5.hash(accessCode ?? "").trim();
 
@@ -39,32 +40,19 @@ export function auth(req: NextRequest) {
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
-  if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !apiKey) {
+  if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
     return {
       error: true,
       msg: !accessCode ? "empty access code" : "wrong access code",
     };
   }
 
-  if (serverConfig.hideUserApiKey && !!apiKey) {
-    return {
-      error: true,
-      msg: "you are not allowed to access openai with your own api key",
-    };
-  }
-
   // if user does not provide an api key, inject system api key
-  if (!apiKey) {
-    const serverApiKey = serverConfig.isAzure
-      ? serverConfig.azureApiKey
-      : serverConfig.apiKey;
-
-    if (serverApiKey) {
+  if (!token) {
+    const apiKey = serverConfig.apiKey;
+    if (apiKey) {
       console.log("[Auth] use system api key");
-      req.headers.set(
-        "Authorization",
-        `${serverConfig.isAzure ? "" : "Bearer "}${serverApiKey}`,
-      );
+      req.headers.set("Authorization", `Bearer ${apiKey}`);
     } else {
       console.log("[Auth] admin did not provide an api key");
     }

@@ -186,8 +186,7 @@
         box-shadow: var(--card-shadow);
         border: var(--border-in-light);
 
-        code,
-        pre {
+        * {
           overflow: hidden;
         }
       }

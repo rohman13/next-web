@@ -1,12 +1,11 @@
 import { SubmitKey } from "../store/config";
 
-import type { PartialLocaleType } from "./index";
+import type { LocaleType } from "./index";
 
-const ko: PartialLocaleType = {
+const ko: LocaleType = {
   WIP: "곧 출시 예정...",
   Error: {
-    Unauthorized:
-      "권한이 없습니다. 설정 페이지에서 액세스 코드를 [입력하세요](/#/auth).",
+    Unauthorized: "권한이 없습니다. 설정 페이지에서 액세스 코드를 입력하세요.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count}개의 메시지`,
@@ -62,7 +61,13 @@ const ko: PartialLocaleType = {
   Settings: {
     Title: "설정",
     SubTitle: "모든 설정",
-
+    Actions: {
+      ClearAll: "모든 데이터 지우기",
+      ResetAll: "모든 설정 초기화",
+      Close: "닫기",
+      ConfirmResetAll: "모든 설정을 초기화하시겠습니까?",
+      ConfirmClearAll: "모든 데이터를 지우시겠습니까?",
+    },
     Lang: {
       Name: "Language", // ATTENTION: if you wanna add a new translation, please do not translate this value, leave it as `Language`
       All: "All Languages",
@@ -71,11 +76,6 @@ const ko: PartialLocaleType = {
     FontSize: {
       Title: "글꼴 크기",
       SubTitle: "채팅 내용의 글꼴 크기 조정",
-    },
-    InjectSystemPrompts: {
-      Title: "시스템 프롬프트 주입",
-      SubTitle:
-        "각 요청의 메시지 목록의 시작에 ChatGPT 시스템 프롬프트를 강제로 추가합니다",
     },
     Update: {
       Version: (x: string) => `버전: ${x}`,
@@ -93,10 +93,8 @@ const ko: PartialLocaleType = {
       SubTitle: "버블에서 마크다운 미리 보기",
     },
     Mask: {
-      Splash: {
-        Title: "마스크 시작 화면",
-        SubTitle: "새로운 채팅 시작 전에 마스크 시작 화면 표시",
-      },
+      Title: "마스크 시작 화면",
+      SubTitle: "새로운 채팅 시작 전에 마스크 시작 화면 표시",
     },
     Prompt: {
       Disable: {
@@ -124,7 +122,11 @@ const ko: PartialLocaleType = {
       Title: "기록 압축 임계값",
       SubTitle: "미압축 메시지 길이가 임계값을 초과하면 압축됨",
     },
-
+    Token: {
+      Title: "API 키",
+      SubTitle: "액세스 코드 제한을 무시하기 위해 키 사용",
+      Placeholder: "OpenAI API 키",
+    },
     Usage: {
       Title: "계정 잔액",
       SubTitle(used: any, total: any) {
@@ -134,7 +136,11 @@ const ko: PartialLocaleType = {
       Check: "확인",
       NoAccess: "잔액 확인을 위해 API 키를 입력하세요.",
     },
-
+    AccessCode: {
+      Title: "액세스 코드",
+      SubTitle: "액세스 제어가 활성화됨",
+      Placeholder: "액세스 코드 입력",
+    },
     Model: "모델",
     Temperature: {
       Title: "온도 (temperature)",
@@ -147,10 +153,6 @@ const ko: PartialLocaleType = {
     PresencePenalty: {
       Title: "존재 페널티 (presence_penalty)",
       SubTitle: "값이 클수록 새로운 주제에 대해 대화할 가능성이 높아집니다.",
-    },
-    FrequencyPenalty: {
-      Title: "빈도 페널티(frequency penalty)",
-      SubTitle: "값이 클수록 같은 줄이 반복될 가능성이 줄어듭니다.",
     },
   },
   Store: {
@@ -177,9 +179,6 @@ const ko: PartialLocaleType = {
   },
   Plugin: {
     Name: "플러그인",
-  },
-  FineTuned: {
-    Sysmessage: "당신은 어시스턴트입니다",
   },
   Mask: {
     Name: "마스크",
@@ -225,12 +224,6 @@ const ko: PartialLocaleType = {
     Close: "닫기",
     Create: "생성",
     Edit: "편집",
-  },
-  Exporter: {
-    Model: "모델",
-    Messages: "메시지",
-    Topic: "주제",
-    Time: "시간",
   },
 };
 

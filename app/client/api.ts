@@ -1,5 +1,4 @@
-import { getClientConfig } from "../config/client";
-import { ACCESS_CODE_PREFIX, Azure, ServiceProvider } from "../constant";
+import { ACCESS_CODE_PREFIX } from "../constant";
 import { ChatMessage, ModelType, useAccessStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
 
@@ -38,15 +37,9 @@ export interface LLMUsage {
   total: number;
 }
 
-export interface LLMModel {
-  name: string;
-  available: boolean;
-}
-
 export abstract class LLMApi {
   abstract chat(options: ChatOptions): Promise<void>;
   abstract usage(): Promise<LLMUsage>;
-  abstract models(): Promise<LLMModel[]>;
 }
 
 type ProviderName = "openai" | "azure" | "claude" | "palm";
@@ -99,12 +92,8 @@ export class ClientApi {
     // 敬告二开开发者们，为了开源大模型的发展，请不要修改上述消息，此消息用于后续数据清洗使用
     // Please do not modify this message
 
-    console.log("[Share]", messages, msgs);
-    const clientConfig = getClientConfig();
-    const proxyUrl = "/sharegpt";
-    const rawUrl = "https://sharegpt.com/api/conversations";
-    const shareUrl = clientConfig?.isApp ? rawUrl : proxyUrl;
-    const res = await fetch(shareUrl, {
+    console.log("[Share]", msgs);
+    const res = await fetch("/sharegpt", {
       body: JSON.stringify({
         avatarUrl,
         items: msgs,
@@ -127,26 +116,22 @@ export const api = new ClientApi();
 
 export function getHeaders() {
   const accessStore = useAccessStore.getState();
-  const headers: Record<string, string> = {
+  let headers: Record<string, string> = {
     "Content-Type": "application/json",
     "x-requested-with": "XMLHttpRequest",
   };
 
-  const isAzure = accessStore.provider === ServiceProvider.Azure;
-  const authHeader = isAzure ? "api-key" : "Authorization";
-  const apiKey = isAzure ? accessStore.azureApiKey : accessStore.openaiApiKey;
-
-  const makeBearer = (s: string) => `${isAzure ? "" : "Bearer "}${s.trim()}`;
+  const makeBearer = (token: string) => `Bearer ${token.trim()}`;
   const validString = (x: string) => x && x.length > 0;
 
   // use user's api key first
-  if (validString(apiKey)) {
-    headers[authHeader] = makeBearer(apiKey);
+  if (validString(accessStore.token)) {
+    headers.Authorization = makeBearer(accessStore.token);
   } else if (
     accessStore.enabledAccessControl() &&
     validString(accessStore.accessCode)
   ) {
-    headers[authHeader] = makeBearer(
+    headers.Authorization = makeBearer(
       ACCESS_CODE_PREFIX + accessStore.accessCode,
     );
   }
