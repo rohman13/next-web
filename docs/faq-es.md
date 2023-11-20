@@ -39,7 +39,7 @@ Esta es su contraseña de acceso personalizada, puede elegir:
 
 > Debates relacionados:[#386](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/386)
 
-Si utiliza el proxy inverso ngnix, debe agregar el siguiente código al archivo de configuración:
+Si utiliza el proxy inverso nginx, debe agregar el siguiente código al archivo de configuración:
 
     # 不缓存，支持流式输出
     proxy_cache off;  # 关闭缓存
@@ -197,9 +197,9 @@ OpenAI cobra en función del número de tokens, y 1,000 tokens generalmente repr
 |gpt-4|$0.03 / 1 mil tokens|$0.06 / 1 mil tokens|8192|
 |gpt-4-32K|$0.06 / 1 mil tokens|$0.12 / 1 mil tokens|32768|
 
-## ¿Cuál es la diferencia entre los modelos gpt-3.5-turbo-16k y GPT3.5-TURBO-0301 (o GPT3.5-TURBO-MMDD)?
+## ¿Cuál es la diferencia entre los modelos GPT-3.5-TURBO y GPT3.5-TURBO-0301 (o GPT3.5-TURBO-MMDD)?
 
 Descripción de la documentación oficial: https://platform.openai.com/docs/models/gpt-3-5
 
-*   gpt-3.5-turbo-16k es el último modelo y se actualiza constantemente.
-*   gpt-3.5-turbo-16k-0301 es una instantánea del modelo congelada el 1 de marzo, no cambiará y se espera que sea reemplazada por una nueva instantánea en 3 meses.
+*   GPT-3.5-Turbo es el último modelo y se actualiza constantemente.
+*   GPT-3.5-turbo-0301 es una instantánea del modelo congelada el 1 de marzo, no cambiará y se espera que sea reemplazada por una nueva instantánea en 3 meses.
