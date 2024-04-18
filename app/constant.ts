@@ -122,7 +122,7 @@ export const DEFAULT_MODELS = [
     available: true,
   },
   {
-    name: "gpt-4-0125-preview",
+    name: "gpt-4-turbo",
     available: true,
   },
   {
